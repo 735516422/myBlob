@@ -24,20 +24,20 @@ let wave = function(canvas,settings) {
     this.auto = settings.auto //随机水波
     this.dropRadius = settings.dropRadius// 波源半径大小
     this.delay = settings.delay * 1000// 波源震荡时间
-    this.attenuation = settings.attenuation,  // 衰减级别
+    this.attenuation = settings.attenuation  // 衰减级别
     this.maxAmplitude = settings.maxAmplitude  // 最大振幅
     this.sourceAmplitude = settings.sourceAmplitude// 震源振幅
     this.half_width = this.width >> 1
     this.half_height = this.height >> 1
     this.old_index = this.width
     this.new_index = this.width * (this.height + 3)
-    this.map_index // 振幅数组索引
-    this.texture   // 原始图像像素信息
-    this.ripple    // 参数波纹的图像像素信息
-    this.image  // Image对象
+    this.map_index = '' // 振幅数组索引
+    this.texture = ''  // 原始图像像素信息
+    this.ripple = ''   // 参数波纹的图像像素信息
+    this.image = '' // Image对象
     this.imageUrl = settings.image  // Image对象
-    this.autoRepeat // 自动产生波源的重复事件
-    this.amplitude_size = this.width * (this.height + 2) * 2, // 振幅数组大小
+    this.autoRepeat = ''// 自动产生波源的重复事件
+    this.amplitude_size = this.width * (this.height + 2) * 2 // 振幅数组大小
     this.ripple_map = []  // 产生水波下一时刻振幅
     this.last_map = [] // 初始时刻振幅
     // 波幅数组初始化为0
@@ -50,6 +50,7 @@ let wave = function(canvas,settings) {
 }
 wave.prototype.init = function(){
     this.image = new Image()
+    this.image.crossOrigin = '*';
     this.image.src = this.imageUrl
     let _this = this
     this.image.onload = function(){
@@ -60,15 +61,15 @@ wave.prototype.init = function(){
 wave.prototype.calculAmplitude = function (index, old_amplitude) {
     var x_boundary = 0, judge = this.map_index % this.width;
     // 由于波幅数据顺序存储，加上左右边界检查，避免左边水波传递到右边
-    if (judge == 0) {
+    if (judge === 0) {
         x_boundary = 1; // 左边边界
-    }else if (judge == this.width - 1) {
+    }else if (judge === this.width - 1) {
         x_boundary = 2; // 右边边界
     }
     var top = this.ripple_map[index - this.width],// 上边的相邻点
         bottom = this.ripple_map[index + this.width],// 下边的相邻点
-        left = x_boundary != 1 ? this.ripple_map[index - 1] : 0,// 左边的相邻点
-        right = x_boundary != 2 ? this.ripple_map[index + 1] : 0;// 右边的相邻点
+        left = x_boundary !== 1 ? this.ripple_map[index - 1] : 0,// 左边的相邻点
+        right = x_boundary !== 2 ? this.ripple_map[index + 1] : 0;// 右边的相邻点
     // 计算当前像素点下一时刻的振幅
     var amplitude = top + bottom + left + right;
     amplitude >>= 1;
@@ -105,7 +106,7 @@ wave.prototype.renderRipple = function(){
             var old_amplitude = this.last_map[i];
             this.last_map[i] = amplitude;
 
-            if (old_amplitude != amplitude) {
+            if (old_amplitude !== amplitude) {
                  // 计算偏移
                 deviation_x = (((x - this.half_width) * amplitude / 1024) << 0) + this.half_width;
                 deviation_y = (((y - this.half_height) * amplitude / 1024) << 0) + this.half_height;
@@ -188,3 +189,4 @@ var requestAnimationFrame = (function(){
             window.setTimeout(callback, 1000 / 60);
         };
 })();
+export default wave
