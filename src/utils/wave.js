@@ -7,7 +7,8 @@ let wave = function(canvas,settings) {
         attenuation: 5,
         maxAmplitude: 1024,
         sourceAmplitude: 512, // 震源振幅
-        auto: !0
+        auto: !0,
+        bgColor:'#fff'
     }
     // 合并设置
     for (var item in defaults) {
@@ -174,7 +175,7 @@ wave.prototype.animate = function() {
 // 保存图像的所有像素信息
 wave.prototype.saveImageData = function() {
     // 在canvas中绘制图形
-    this.ctx.drawImage(this.image, 0, 0);
+    this.ctx.drawImage(this.image, 0, 0, this.width, this.height);
     // // 图像的ImageData对象
     this.texture = this.ctx.getImageData(0, 0, this.width, this.height);
     this.ripple = this.ctx.getImageData(0, 0, this.width, this.height);

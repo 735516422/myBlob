@@ -18,23 +18,24 @@ export default class myCanvas extends React.Component{
             width: 800,//width
             height: 500,//height
             delay: 1,//if auto param === true. 1 === 1 second delay for animation
-            auto: 1//if auto param === true, animation starts on it´s own
+            auto: 0//if auto param === true, animation starts on it´s own
         }
         let cvs = document.getElementById("canvas") 
         let w = new wave(cvs,settings)
+        this.setState({
+            w:w
+        })
         w.init()
         document.getElementById( 'holder' ).addEventListener( 'click', function( e ) {
             var mouseX = e.layerX;
             var mouseY = e.layerY;
-            w.disturb( mouseX, mouseY );
-        
+            w.disturb( mouseX, mouseY );     
         } );
         //on mousemove
         document.getElementById( 'holder' ).addEventListener( 'mousemove', function( e ) {
             var mouseX = e.layerX;
             var mouseY = e.layerY;
             w.disturb( mouseX, mouseY );
-        
         } );
     }
     render(){

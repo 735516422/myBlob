@@ -1,7 +1,8 @@
 import React from 'react';
-import {BrowserRouter as Router , Route , Switch} from 'react-router-dom';
-import Index from './component/index'
+import {HashRouter as Router , Route , Switch} from 'react-router-dom';
+import Index from './view/index'
 import Error from './error'
+import Back from './component/back'
 import "./assets/css/common.scss"
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route path='/' component={Index}/>
           <Route component={Error} />
         </Switch>
+        <Back></Back>
       </div>
     </Router>
   );
