@@ -2,6 +2,7 @@ import React,{ lazy, Suspense }from 'react'
 import Loading from '../component/loading'
 import InkButton from '../component/button/InkButton'
 import GraButton from '../component/button/graButton'
+import AniText from '../component/aniText'
 //import Back from './back'
 //const Back = lazy(() => import('./back'))
 export default class index extends React.Component{
@@ -11,6 +12,7 @@ export default class index extends React.Component{
                 {/* <Loading></Loading> */}
                 <InkButton></InkButton>
                 <GraButton></GraButton>
+                <AniText text="hello"></AniText>
             </Suspense>
         );
     }
