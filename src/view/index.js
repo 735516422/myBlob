@@ -12,7 +12,8 @@ export default class index extends React.Component{
                 {/* <Loading></Loading> */}
                 <InkButton></InkButton>
                 <GraButton></GraButton>
-                <AniText text="hello"></AniText>
+                <AniText text={"sword art online"}></AniText>
+                <AniText text={"欢迎来到我的博客"}></AniText>
             </Suspense>
         );
     }
