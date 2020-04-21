@@ -10,10 +10,10 @@ export default class index extends React.Component{
         return (
             <Suspense fallback={<Loading />}>
                 {/* <Loading></Loading> */}
-                <InkButton></InkButton>
-                <GraButton></GraButton>
-                <AniText text={"sword art online"}></AniText>
-                <AniText text={"欢迎来到我的博客"}></AniText>
+                {/* <InkButton></InkButton>
+                <GraButton></GraButton> */}
+                {/* <AniText text={"sword art online"}></AniText>
+                <AniText text={"欢迎来到我的博客"}></AniText> */}
             </Suspense>
         );
     }

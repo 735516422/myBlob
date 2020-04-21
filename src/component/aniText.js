@@ -32,7 +32,6 @@ const AniText = ({text,size=16,del=0.1}) => {
     },[])
     const init = () => {
         setSpans(text.split(""))
-        console.log(text.split(""))
     }
     return (
         <MyText size={size}>
